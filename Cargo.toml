@@ -1,6 +1,0 @@
-[package]
-name = "Hello_World"
-version = "0.1.0"
-authors = ["BlueFlame_Fox <joarmstrong2014@gmail.com>"]
-
-[dependencies]
