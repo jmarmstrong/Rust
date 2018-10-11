@@ -4,4 +4,5 @@ members = [
     "test_input",
     "hello_world",
     "guessing_game",
+    "text_length",
 ]

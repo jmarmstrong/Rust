@@ -33,6 +33,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "hello_world"
+version = "0.1.0"
+
+[[package]]
 name = "libc"
 version = "0.2.43"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -61,6 +65,14 @@ dependencies = [
 name = "rand_core"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "test_input"
+version = "0.1.0"
+
+[[package]]
+name = "text_length"
+version = "0.1.0"
 
 [[package]]
 name = "winapi"
