@@ -1,0 +1,6 @@
+[package]
+name = "helllllo"
+version = "0.1.0"
+authors = ["BlueFlame-Fox <joarmtrong2014@gmail.com>"]
+
+[dependencies]
