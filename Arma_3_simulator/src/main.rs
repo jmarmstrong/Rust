@@ -25,7 +25,7 @@ fn main() {
     println!("Crossroads: I will let you make the choices lets go.");
     println!("Crossroads: How do you want to get there?");
 
-    match simple_input() {
+    match valid_input(&|x| *x < 4 && *x > 0) {
         1 => {
             println!("Crossroad: Copy that we will send the Tank to you now. ");
             println!("Crossroad: Drive as near the enemy base without being detectied");
@@ -40,7 +40,11 @@ fn main() {
             }
         }
         2 => {
-            println!("Crossroads: Copy that we wil send the truck to you now.");
+            println!("Crossroads: Copy that we wil send the lorry to you now.");
+            println!("Crossroad: Drive as near the enemy base without being detectied");
+            println!("You go near the enemy base but you get spotted and they send someone to check the back of your lorry");
+            println!("He saw your team and got suspicious");
+            println!("He asks why you have people in the back");
         }
         3 => {
             println!("Crossroads: Copy that we will send the Jeep to you now");
