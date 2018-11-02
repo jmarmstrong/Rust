@@ -34,21 +34,45 @@ fn main() {
             println!("Mission Failed");
             println!("We'll get them next time.");
             println!("Do you want to Play again");
+            println!("1) Yes")
+            println!("2) No")
             match valid_input(&|x| *x < 3 && *x > 0) {
                 1 => main(),
                 _ => (),
             }
         }
         2 => {
-            println!("Crossroads: Copy that we wil send the lorry to you now.");
+            println!("Crossroads: Copy that we wil send the truck to you now.");
             println!("Crossroad: Drive as near the enemy base without being detectied");
-            println!("You go near the enemy base but you get spotted and they send someone to check the back of your lorry");
+            println!("You go near the enemy base but you get spotted and they send someone to check the back of your truck");
             println!("He saw your team and got suspicious");
             println!("He asks why you have people in the back");
+            println!("How do you respond?")
+            println!("1) I'm doing recon of your base.")
+            println!("2) I am helping a human traficer.")
+            println!("3) Just bird watching with my friends")
+            match simple_input() {
+             1 => {println!("He shoots you and the others.")
+                 println!("Mission failed")
+                 println!("Sometimes truth isn't the correct awnser")
+                 println!("Do you want to play again?")
+                 println!("1) Yes")
+                 println!("2) No")
+                 match valid_input(&|x| *x < 3 && x > 0) {
+                  1 => main()
+                  2 => (),
+                  _ => (),   
+                 }
+                }
+            }
         }
         3 => {
             println!("Crossroads: Copy that we will send the Jeep to you now");
         }
         _ => panic!("You enterd a unknown character"),
     }
+}
+
+fn inventory() {
+    
 }
