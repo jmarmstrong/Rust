@@ -15,9 +15,14 @@ fn main() {
         _ => panic!("You entered a unknown character"),
     };
     println!("You are in command of a squad of 5 and you have to make sure they live.");
-    println!("What is your surname");
+    println!("What is your surname?");
     let name: String = simple_input();
-
+    if name = "Armstrong" {
+    println!("Whats your password?")
+    let password: String = simple_input();}
+    if password = "test" {
+        bypass()
+    }
     println!("Hello commander {}", name);
     println!("Your Squad mates are called: Mark, Jose, arthur, Dutch and John");
     println!("crossroads: We are going to send your team on a recon mission.");
@@ -98,7 +103,10 @@ fn main() {
             }
         }
         3 => {
-            println!("Crossroads: Copy that we will send the Jeep to you now");
+            println!("Crossroads: Copy that we will send the Jeep to you now.");
+            println!("Crossroad: Drive as near the enemy base without being detectied.");
+            println!("You get detected but no one comes out.")
+            println!("You finish your recon and head to base.")
         }
         _ => panic!("You enterd a unknown character"),
     }
@@ -112,3 +120,13 @@ fn base() {
     println!("3) Inventory");
 }
 fn inventory() {}
+    
+fn bypass() {
+    pritnln!("1) To begining")
+    println!("2) Base 1")
+    
+    match valid_input(&|x| x < 3 && x > 0)
+    1 => main(),
+    2 => base(),
+    _ => panic!("You enterd a unknown character"),
+    }
