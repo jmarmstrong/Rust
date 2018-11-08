@@ -1,18 +1,29 @@
 extern crate read_input;
 use read_input::*;
+enum Item {
+    Ak47,
+    Deserteagle,
+    Coltpython,
+    Coltanaconda,
+    MatebaAutorevolver,
+    VektorCR21,
+    AKM,
+}
 
 fn main() {
     let mut money = 0;
+    let mut inventory: Vec<Item> = Vec::new();
+    inventory.push(Item::Ak47);
     println!("Hello to the game of games, the simulators of simulators ");
     println!("Welcome to The Arma 3 simulator");
     println!("Are you Ready?");
     println!("1) Yes");
     println!("2) No");
 
-    match valid_input(&|x| *x < 4 && *x > 0) {
+    match simple_input() {
         1 => println!("Ok well lets go!"),
         2 => println!("Well you chose to play this game so lets go!"),
-        3 => pass(),
+        2004 => pass(),
         _ => panic!("You entered a unknown character"),
     };
     println!("You are in command of a squad of 5 and you have to make sure they live.");
@@ -36,14 +47,7 @@ fn main() {
             println!("They get out the Anti-Tank launcher and you are about to load the tank but your too slow and the tank is destroyed");
             println!("Mission Failed");
             println!("We'll get them next time.");
-            println!("Do you want to Play again");
-            println!("1) Yes");
-            println!("2) No");
-            match valid_input(&|x| *x < 3 && *x > 0) {
-                1 => main(),
-                2 => (),
-                _ => (),
-            }
+            dead()
         }
         2 => {
             println!("Crossroads: Copy that we wil send the truck to you now.");
@@ -60,15 +64,9 @@ fn main() {
                     println!("He shoots you and the others.");
                     println!("Mission failed");
                     println!("Sometimes truth isn't the correct awnser");
-                    println!("Do you want to play again?");
-                    println!("1) Yes");
-                    println!("2) No");
-                    match valid_input(&|x| *x < 3 && *x > 0) {
-                        1 => main(),
-                        2 => (),
-                        _ => (),
-                    }
+                    dead()
                 }
+
                 2 => {
                     println!("He gets even more suspicious then your radio gose off");
                     println!(
@@ -77,21 +75,15 @@ fn main() {
                     );
                     println!("Mission Failed");
                     println!("Silence is not always the right awnser.");
-                    println!("Do you want to play again?");
-                    println!("1) Yes");
-                    println!("2) No");
-                    match valid_input(&|x| *x < 3 && *x > 0) {
-                        1 => main(),
-                        2 => (),
-                        _ => (),
-                    }
+                    dead()
                 }
+
                 3 => {
                     println!("He dosen't belive you at first but sees your banoculors");
                     println!("He leaves you alove");
                     println!("You head back to base");
                     println!("You have been given £100");
-                    let mut money = 100;
+                    money = 100;
                     base1()
                 }
                 _ => panic!("You enterd a unknown character"),
@@ -103,7 +95,7 @@ fn main() {
             println!("You get detected but no one comes out.");
             println!("You finish your recon and head back to base.");
             println!("You have been given £100");
-            let mut money = 100;
+            money = 100;
             base1()
         }
         _ => panic!("You enterd a unknown character"),
@@ -141,3 +133,13 @@ fn pass() {
 fn shop() {}
 
 fn mission1() {}
+
+fn dead() {
+    println!("Do you want to play again?");
+    println!("1) Yes");
+    println!("2) No");
+    if simple_input::<u32>() == 1 {
+        main()
+    }
+}
+fn money() {}
