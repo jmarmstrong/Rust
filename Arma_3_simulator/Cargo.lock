@@ -2,13 +2,13 @@
 name = "arma_3_simulator"
 version = "0.1.0"
 dependencies = [
- "read_input 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "read_input 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "read_input"
-version = "0.3.7"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
-"checksum read_input 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)" = "9704a25faa0344d12a186d3defe37f340d9fedff6802c55708a771d143c4f4f7"
+"checksum read_input 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "1a20f680d5f6e12cc4979a7ec8fc1e08bbbbac002a88637788a06b85628b0ba4"

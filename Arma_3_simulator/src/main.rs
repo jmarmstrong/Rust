@@ -7,9 +7,10 @@ enum Item {
     Coltanaconda,
     MatebaAutorevolver,
     VektorCR21,
-    AKM,
+    MauserC96,
+    Truck,
+    Jeep,
 }
-
 fn main() {
     let mut money = 0;
     let mut inventory: Vec<Item> = Vec::new();
@@ -24,7 +25,7 @@ fn main() {
         1 => println!("Ok well lets go!"),
         2 => println!("Well you chose to play this game so lets go!"),
         2004 => pass(),
-        _ => panic!("You entered a unknown character"),
+        _ => unreachable!(),
     };
     println!("You are in command of a squad of 5 and you have to make sure they live.");
     println!("What is your surname?");
@@ -39,7 +40,7 @@ fn main() {
     println!("2) Truck");
     println!("3) Jeep");
 
-    match valid_input(&|x| *x < 4 && *x > 0) {
+    match valid_input(|x| *x < 4 && *x > 0) {
         1 => {
             println!("Crossroad: Copy that we will send the Tank to you now. ");
             println!("Crossroad: Drive as near the enemy base without being detectied");
@@ -50,7 +51,8 @@ fn main() {
             dead()
         }
         2 => {
-            println!("Crossroads: Copy that we wil send the truck to you now.");
+            println!("Crossroads: Copy that we wil send the Truck to you now.");
+            inventory.push(Item::Truck);
             println!("Crossroad: Drive as near the enemy base without being detectied");
             println!("You go near the enemy base but you get spotted and they send someone to check the back of your truck");
             println!("He saw your team and got suspicious");
@@ -59,7 +61,7 @@ fn main() {
             println!("1) I'm doing recon of your base.");
             println!("2) ...");
             println!("3) Just bird watching with my friends");
-            match valid_input(&|x| *x < 4 && *x > 0) {
+            match valid_input(|x| *x < 4 && *x > 0) {
                 1 => {
                     println!("He shoots you and the others.");
                     println!("Mission failed");
@@ -84,49 +86,87 @@ fn main() {
                     println!("You head back to base");
                     println!("You have been given £100");
                     money = 100;
-                    base1()
+                    println!("Crossroads: Welcome to the base")
                 }
-                _ => panic!("You enterd a unknown character"),
+                _ => unreachable!(),
             }
         }
         3 => {
             println!("Crossroads: Copy that we will send the Jeep to you now.");
+            inventory.push(Item::Jeep);
             println!("Crossroad: Drive as near the enemy base without being detectied.");
             println!("You get detected but no one comes out.");
             println!("You finish your recon and head back to base.");
             println!("You have been given £100");
             money = 100;
-            base1()
-        }
-        _ => panic!("You enterd a unknown character"),
-    }
-}
-fn base1() {
-    println!("Welcome to base camp");
-    println!("Here you can: goto the shop, open your inventory and select missions");
-    println!("I will leave you to it");
-    println!("1) Missions");
-    println!("2) Shop");
-    println!("3) Inventory");
+            println!("Crossroads: Welcome {} to the base", name);
+            println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
+            println!("1) Missions");
+            println!("2) Shop");
+            println!("3) Inventory");
 
-    match valid_input(&|x| *x < 5 && *x < 0) {
-        1 => mission1(),
-        2 => shop(),
-        3 => inventory(),
-        4 => (),
-        _ => panic!("You enterd a unknown character"),
+            match valid_input(|x| *x < 4 && *x > 0) {
+                1 => {
+                    println!("Here you can play or repaly Missions.");
+                    println!("1) The begining");
+                    println!("2) The Raid");
+                    match valid_input(|x| *x < 3 && *x > 0) {
+                        1 => {
+                            println!("Are you sure you want to repaly.");
+                            println!("1) Yes");
+                            println!("2) No");
+                        }
+                        _ => unreachable!(),
+                    }
+                }
+                2 => {
+                    println!("Crossroads: Welcome to the shop.");
+                    println!("Crossroads: Here you can: Buy guns, vehicles and more.");
+                    println!("Choose a category");
+                    println!("1) Vehicles");
+                    println!("2) Guns");
+
+                    match valid_input(|x| *x > 2 && *x < 0) {
+                        1 => {
+                            println!("Choose a type of gun.");
+                            println!("1) Pistols");
+                            println!("2) Revolvers");
+                            println!("3) Assult rifle");
+                            println!("4) Shotgun");
+
+                            match valid_input(|x| *x > 10 && *x < 0) {
+                                1 => {
+                                    println!("{}", money);
+                                    println!("1) Desert eagle");
+                                    println!("2) Mauser C96")
+                                }
+                                2 => {}
+                                3 => {
+                                    println!("Pick a weapon");
+                                    println!("1) Ak-47");
+                                    println!("2) Vektor CR21");
+                                }
+                                _ => unreachable!(),
+                            }
+                        }
+                        _ => unreachable!(),
+                    }
+                }
+                3 => println!("3) Inventory"),
+                _ => unreachable!(),
+            }
+        }
+        _ => unreachable!(),
     }
 }
+
 fn inventory() {}
 
 fn pass() {
     println!("1) The begining");
-    println!("2) Base 1");
-
-    match valid_input(&|x| *x < 3 && *x > 0) {
+    match valid_input(|x| *x < 3 && *x > 0) {
         1 => main(),
-        2 => base1(),
-        _ => panic!("You enterd a unknown character"),
+        _ => unreachable!(),
     }
 }
 
@@ -142,4 +182,3 @@ fn dead() {
         main()
     }
 }
-fn money() {}
