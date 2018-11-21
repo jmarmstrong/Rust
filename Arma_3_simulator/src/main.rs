@@ -1,5 +1,8 @@
 extern crate read_input;
 use read_input::*;
+use std::io;
+use std::io::prelude::*;
+use std::{thread, time};
 enum Item {
     Ak47,
     Deserteagle,
@@ -16,6 +19,7 @@ fn main() {
     let mut inventory: Vec<Item> = Vec::new();
     inventory.push(Item::Ak47);
     println!("Hello to the game of games, the simulators of simulators ");
+
     println!("Welcome to The Arma 3 simulator");
     println!("Are you Ready?");
     println!("1) Yes");
@@ -137,11 +141,24 @@ fn main() {
                             match valid_input(|x| *x > 10 && *x < 0) {
                                 1 => {
                                     println!("{}", money);
+                                    println!("Pick a weapon");
                                     println!("1) Desert eagle");
                                     println!("2) Mauser C96")
                                 }
-                                2 => {}
+                                2 => {
+                                    println!("{}", money);
+                                    println!("Pick a weapon");
+                                    println!("1) Colt python");
+                                    println!("2) Colt anaconder");
+                                    println!("3) Mateba Auto revolver");
+
+                                    match valid_input(|x| *x < 4 && *x < 0) {
+                                        1 => {}
+                                        _ => unreachable!(),
+                                    }
+                                }
                                 3 => {
+                                    println!("{}", money);
                                     println!("Pick a weapon");
                                     println!("1) Ak-47");
                                     println!("2) Vektor CR21");
@@ -181,4 +198,8 @@ fn dead() {
     if simple_input::<u32>() == 1 {
         main()
     }
+}
+
+fn pause() {
+    thread::sleep(time::Duration::from_secs(5));
 }
