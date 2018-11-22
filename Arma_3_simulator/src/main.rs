@@ -19,7 +19,7 @@ fn main() {
     let mut inventory: Vec<Item> = Vec::new();
     inventory.push(Item::Ak47);
     println!("Hello to the game of games, the simulators of simulators ");
-
+    pause();
     println!("Welcome to The Arma 3 simulator");
     println!("Are you Ready?");
     println!("1) Yes");
@@ -103,75 +103,7 @@ fn main() {
             println!("You finish your recon and head back to base.");
             println!("You have been given £100");
             money = 100;
-            println!("Crossroads: Welcome {} to the base", name);
-            println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
-            println!("1) Missions");
-            println!("2) Shop");
-            println!("3) Inventory");
-
-            match valid_input(|x| *x < 4 && *x > 0) {
-                1 => {
-                    println!("Here you can play or repaly Missions.");
-                    println!("1) The begining");
-                    println!("2) The Raid");
-                    match valid_input(|x| *x < 3 && *x > 0) {
-                        1 => {
-                            println!("Are you sure you want to repaly.");
-                            println!("1) Yes");
-                            println!("2) No");
-                        }
-                        _ => unreachable!(),
-                    }
-                }
-                2 => {
-                    println!("Crossroads: Welcome to the shop.");
-                    println!("Crossroads: Here you can: Buy guns, vehicles and more.");
-                    println!("Choose a category");
-                    println!("1) Vehicles");
-                    println!("2) Guns");
-
-                    match valid_input(|x| *x > 2 && *x < 0) {
-                        1 => {
-                            println!("Choose a type of gun.");
-                            println!("1) Pistols");
-                            println!("2) Revolvers");
-                            println!("3) Assult rifle");
-                            println!("4) Shotgun");
-
-                            match valid_input(|x| *x > 10 && *x < 0) {
-                                1 => {
-                                    println!("{}", money);
-                                    println!("Pick a weapon");
-                                    println!("1) Desert eagle");
-                                    println!("2) Mauser C96")
-                                }
-                                2 => {
-                                    println!("{}", money);
-                                    println!("Pick a weapon");
-                                    println!("1) Colt python");
-                                    println!("2) Colt anaconder");
-                                    println!("3) Mateba Auto revolver");
-
-                                    match valid_input(|x| *x < 4 && *x < 0) {
-                                        1 => {}
-                                        _ => unreachable!(),
-                                    }
-                                }
-                                3 => {
-                                    println!("{}", money);
-                                    println!("Pick a weapon");
-                                    println!("1) Ak-47");
-                                    println!("2) Vektor CR21");
-                                }
-                                _ => unreachable!(),
-                            }
-                        }
-                        _ => unreachable!(),
-                    }
-                }
-                3 => println!("3) Inventory"),
-                _ => unreachable!(),
-            }
+            base()
         }
         _ => unreachable!(),
     }
@@ -201,5 +133,105 @@ fn dead() {
 }
 
 fn pause() {
-    thread::sleep(time::Duration::from_secs(5));
+    thread::sleep(time::Duration::from_secs(2));
+}
+
+fn pause2() {
+    let mut stdin = io::stdin();
+    let mut stdout = io::stdout();
+
+    // We want the cursor to stay at the end of the line, so we print without a newline and flush manually.
+    write!(stdout, "Press any key to continue...").unwrap();
+    stdout.flush().unwrap();
+
+    // Read a single byte and discard
+    let _ = stdin.read(&mut [0u8]).unwrap();
+}
+
+fn base() {
+    println!("Crossroads: Welcome {} to the base", name);
+    println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
+    println!("1) Missions");
+    println!("2) Shop");
+    println!("3) Inventory");
+
+    match valid_input(|x| *x < 4 && *x > 0) {
+        1 => {
+            println!("Here you can play or repaly Missions.");
+            println!("1) The begining");
+            println!("2) The Raid");
+            match valid_input(|x| *x < 3 && *x > 0) {
+                1 => {
+                    println!("Are you sure you want to repaly.");
+                    println!("1) Yes");
+                    println!("2) No");
+                }
+                _ => unreachable!(),
+            }
+        }
+        2 => {
+            println!("Crossroads: Welcome to the shop.");
+            println!("Crossroads: Here you can: Buy guns, vehicles and more.");
+            println!("Choose a category");
+            println!("1) Vehicles");
+            println!("2) Guns");
+
+            match simple_input() {
+                1 => {
+                    println!("sadfgfhghj");
+                }
+
+                2 => {
+                    println!("Choose a type of gun.");
+                    println!("1) Pistols");
+                    println!("2) Revolvers");
+                    println!("3) Assult rifle");
+                    println!("4) Shotgun");
+
+                    match simple_input() {
+                        1 => {
+                            println!("{}", money);
+                            println!("Pick a weapon");
+                            println!("1) Desert eagle");
+                            println!("2) Mauser C96");
+                        }
+                        2 => {
+                            println!("{}", money);
+                            println!("Pick a weapon");
+                            println!("1) Colt Python");
+                            println!("2) Colt Anaconder");
+                            println!("3) Mateba Auto revolver");
+
+                            match valid_input(|x| *x < 4 && *x > 0) {
+                                1 => {
+                                    if money < 100 {
+                                        println!("You cannot buy this item.");
+                                        pause2();
+                                        base();
+                                        2
+                                    } else {
+                                        inventory.push(Item::Coltpython);
+                                        println!("You have successfully bought a Colt Python.");
+                                        pause2();
+                                        base();
+                                    }
+                                }
+                                _ => unreachable!(),
+                            }
+                        }
+                        3 => {
+                            println!("{}", money);
+                            println!("Pick a weapon");
+                            println!("1) Ak-47");
+                            println!("2) Vektor CR21");
+                        }
+                        _ => unreachable!(),
+                    }
+                }
+                _ => unreachable!(),
+            }
+        }
+        3 => println!("3) Inventory"),
+        _ => unreachable!(),
+    }
 }
