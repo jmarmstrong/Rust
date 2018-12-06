@@ -1,3 +1,4 @@
+extern crate dont_disappear;
 extern crate read_input;
 use read_input::*;
 use std::io;
@@ -23,14 +24,14 @@ enum Item {
 }
 
 fn main() {
+    dont_dissapear::any_key_to_continue::default();
+    println!("You are in command of a squad of 5 and you have to make sure they live.");
+    println!("What is your surname?");
     let mut player = Player {
         name: simple_input(),
         money: 0,
         inventory: Vec::new(),
     };
-    let mut money = 0;
-    let mut inventory: Vec<Item> = Vec::new();
-    inventory.push(Item::Ak47);
     println!("Hello to the game of games, the simulators of simulators ");
     pause();
     println!("Welcome to The Arma 3 simulator");
@@ -41,13 +42,13 @@ fn main() {
     match simple_input() {
         1 => println!("Ok well lets go!"),
         2 => println!("Well you chose to play this game so lets go!"),
-        2004 => pass(),
+        2004 => pass(&mut player),
         _ => unreachable!(),
     };
     println!("You are in command of a squad of 5 and you have to make sure they live.");
     println!("What is your surname?");
-    let name: String = simple_input();
-    println!("Hello commander {}", name);
+    player.inventory.push(Item::Ak47);
+    println!("Hello commander {}", player.name);
     println!("Your Squad mates are called: Mark, Jose, arthur, Dutch and John");
     println!("crossroads: We are going to send your team on a recon mission.");
     println!("Crossroads: You will be undercover as citizens so you will be unarmed  .");
@@ -69,7 +70,7 @@ fn main() {
         }
         2 => {
             println!("Crossroads: Copy that we wil send the Truck to you now.");
-            inventory.push(Item::Truck);
+            player.inventory.push(Item::Truck);
             println!("Crossroad: Drive as near the enemy base without being detectied");
             println!("You go near the enemy base but you get spotted and they send someone to check the back of your truck");
             println!("He saw your team and got suspicious");
@@ -90,7 +91,7 @@ fn main() {
                     println!("He gets even more suspicious then your radio gose off");
                     println!(
                         "He hears them call you commander {} and shoots all of you",
-                        name
+                        player.name
                     );
                     println!("Mission Failed");
                     println!("Silence is not always the right awnser.");
@@ -102,7 +103,7 @@ fn main() {
                     println!("He leaves you alove");
                     println!("You head back to base");
                     println!("You have been given £100");
-                    money = 100;
+                    player.money = 100;
                     println!("Crossroads: Welcome to the base")
                 }
                 _ => unreachable!(),
@@ -110,23 +111,23 @@ fn main() {
         }
         3 => {
             println!("Crossroads: Copy that we will send the Jeep to you now.");
-            inventory.push(Item::Jeep);
+            player.inventory.push(Item::Jeep);
             println!("Crossroad: Drive as near the enemy base without being detectied.");
             println!("You get detected but no one comes out.");
             println!("You finish your recon and head back to base.");
             println!("You have been given £100");
-            money = 100;
-            base(&mut money, &name, &mut inventory);
+            player.money = 100;
+            base(&mut player);
         }
         _ => unreachable!(),
     }
 }
 
-fn pass() {
+fn pass(mut player: &mut Player) {
     println!("1) The begining");
     match valid_input(|x| *x < 3 && *x > 0) {
         1 => main(),
-        2 => base(),
+        2 => base(&mut player),
         _ => unreachable!(),
     }
 }
@@ -160,8 +161,8 @@ fn pause2() {
     let _ = stdin.read(&mut [0u8]).unwrap();
 }
 
-fn base(mut money: &mut u32, name: &str, mut inventory: &mut Vec<Item>) {
-    println!("Crossroads: Welcome {} to the base", name);
+fn base(mut player: &mut Player) {
+    println!("Crossroads: Welcome {} to the base", player.name);
     println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
     println!("1) Missions");
     println!("2) Shop");
@@ -202,13 +203,13 @@ fn base(mut money: &mut u32, name: &str, mut inventory: &mut Vec<Item>) {
 
                     match simple_input() {
                         1 => {
-                            println!("{}", money);
+                            println!("{}", player.money);
                             println!("Pick a weapon");
                             println!("1) Desert eagle");
                             println!("2) Mauser C96");
                         }
                         2 => {
-                            println!("{}", money);
+                            println!("{}", player.money);
                             println!("Pick a weapon");
                             println!("1) Colt Python");
                             println!("2) Colt Anaconder");
@@ -216,22 +217,22 @@ fn base(mut money: &mut u32, name: &str, mut inventory: &mut Vec<Item>) {
 
                             match valid_input(|x| *x < 4 && *x > 0) {
                                 1 => {
-                                    if *money < 100 {
+                                    if player.money < 100 {
                                         println!("You cannot buy this item.");
                                         pause2();
-                                        base(&mut money, name, &mut inventory);
+                                        base(&mut player);
                                     } else {
-                                        inventory.push(Item::Coltpython);
+                                        player.inventory.push(Item::Coltpython);
                                         println!("You have successfully bought a Colt Python.");
                                         pause2();
-                                        base(&mut money, name, &mut inventory);
+                                        base(&mut player);
                                     }
                                 }
                                 _ => unreachable!(),
                             }
                         }
                         3 => {
-                            println!("{}", money);
+                            println!("{}", player.money);
                             println!("1) Ak-47");
                             println!("2) Vektor CR21");
                         }

@@ -5,3 +5,4 @@ authors = ["BlueFlame-Fox <joarmstrong2014@gmail.com>"]
 
 [dependencies]
 read_input = "0.5"
+dont_disappear = "2.2.0"
