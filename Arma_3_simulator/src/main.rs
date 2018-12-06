@@ -3,6 +3,13 @@ use read_input::*;
 use std::io;
 use std::io::prelude::*;
 use std::{thread, time};
+
+struct Player {
+    name: String,
+    money: u32,
+    inventory: Vec<Item>,
+}
+
 enum Item {
     Ak47,
     Deserteagle,
@@ -14,7 +21,13 @@ enum Item {
     Truck,
     Jeep,
 }
+
 fn main() {
+    let mut player = Player {
+        name: simple_input(),
+        money: 0,
+        inventory: Vec::new(),
+    };
     let mut money = 0;
     let mut inventory: Vec<Item> = Vec::new();
     inventory.push(Item::Ak47);
@@ -103,18 +116,17 @@ fn main() {
             println!("You finish your recon and head back to base.");
             println!("You have been given £100");
             money = 100;
-            base()
+            base(&mut money, &name, &mut inventory);
         }
         _ => unreachable!(),
     }
 }
 
-fn inventory() {}
-
 fn pass() {
     println!("1) The begining");
     match valid_input(|x| *x < 3 && *x > 0) {
         1 => main(),
+        2 => base(),
         _ => unreachable!(),
     }
 }
@@ -148,7 +160,7 @@ fn pause2() {
     let _ = stdin.read(&mut [0u8]).unwrap();
 }
 
-fn base() {
+fn base(mut money: &mut u32, name: &str, mut inventory: &mut Vec<Item>) {
     println!("Crossroads: Welcome {} to the base", name);
     println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
     println!("1) Missions");
@@ -204,16 +216,15 @@ fn base() {
 
                             match valid_input(|x| *x < 4 && *x > 0) {
                                 1 => {
-                                    if money < 100 {
+                                    if *money < 100 {
                                         println!("You cannot buy this item.");
                                         pause2();
-                                        base();
-                                        2
+                                        base(&mut money, name, &mut inventory);
                                     } else {
                                         inventory.push(Item::Coltpython);
                                         println!("You have successfully bought a Colt Python.");
                                         pause2();
-                                        base();
+                                        base(&mut money, name, &mut inventory);
                                     }
                                 }
                                 _ => unreachable!(),
@@ -221,7 +232,6 @@ fn base() {
                         }
                         3 => {
                             println!("{}", money);
-                            println!("Pick a weapon");
                             println!("1) Ak-47");
                             println!("2) Vektor CR21");
                         }
