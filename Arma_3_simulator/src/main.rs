@@ -167,7 +167,7 @@ fn pass(mut player: &mut Player) {
 
 fn shop() {}
 
-fn mission1() {}
+fn mission1(mut player: &mut Player) {}
 
 fn dead() {
     println!("Do you want to play again?");
@@ -204,8 +204,13 @@ fn base(mut player: &mut Player) {
             println!("2) The Raid");
             match valid_input(|x| *x < 3 && *x > 0) {
                 1 => {
-                    println!("Are you sure you want to repaly.");
+                    println!("Are you sure you want to repaly?");
                     pause();
+                    println!("1) Yes");
+                    println!("2) No");
+                }
+                2 = {
+                    println!("Are you ready to start the mission?");
                     println!("1) Yes");
                     println!("2) No");
                 }
