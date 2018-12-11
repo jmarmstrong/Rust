@@ -209,7 +209,7 @@ fn base(mut player: &mut Player) {
                     println!("1) Yes");
                     println!("2) No");
                 }
-                2 = {
+                2 => {
                     println!("Are you ready to start the mission?");
                     println!("1) Yes");
                     println!("2) No");
@@ -234,7 +234,7 @@ fn base(mut player: &mut Player) {
 
                 2 => {
                     println!("Choose a type of gun.");
-                    pause()
+                    pause();
                     println!("1) Pistols");
                     println!("2) Revolvers");
                     println!("3) Assult rifle");
@@ -244,7 +244,7 @@ fn base(mut player: &mut Player) {
                         1 => {
                             println!("{}", player.money);
                             println!("Pick a weapon");
-                            pause()
+                            pause();
                             println!("1) Desert eagle");
                             println!("2) Mauser C96");
                             
@@ -371,3 +371,9 @@ fn base(mut player: &mut Player) {
         _ => unreachable!(),
     }
 }
+                }
+            }
+        }
+    }
+}
+            
