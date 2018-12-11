@@ -229,7 +229,7 @@ fn base(mut player: &mut Player) {
 
             match simple_input() {
                 1 => {
-                    println!("sadfgfhghj");
+                    println!("Choose a type of vehicle.");
                 }
 
                 2 => {
@@ -258,7 +258,7 @@ fn base(mut player: &mut Player) {
                                         player.inventory.push(Item::Deserteagle);
                                         println!("You have successfully bought a Desert eagle.");
                                         player.money = player.money - 200;
-                                        pause();
+                                        pause2();
                                         base(&mut player)
                                     }
                                 2 => {
@@ -270,7 +270,7 @@ fn base(mut player: &mut Player) {
                                     player.inventory.push(Item::MauserC96);
                                     println!("You have successfully bought a Desert eagle.");
                                     player.money = player.money - 250;
-                                    pause();
+                                    pause2();
                                     base(&mut player)
                                 }
                                 }
