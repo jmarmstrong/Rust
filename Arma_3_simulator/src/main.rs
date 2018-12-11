@@ -47,7 +47,7 @@ fn main() {
         2004 => pass(&mut player),
         _ => unreachable!(),
     };
-    
+
     player.inventory.push(Item::Ak47);
     println!("Hello commander {}", player.name);
     pause();
@@ -247,32 +247,33 @@ fn base(mut player: &mut Player) {
                             pause();
                             println!("1) Desert eagle");
                             println!("2) Mauser C96");
-                            
-                            match valid_input(|x| *x < 3 && *x > 0){
+
+                            match valid_input(|x| *x < 3 && *x > 0) {
                                 1 => {
-                                    if player.money < 200{
+                                    if player.money < 200 {
                                         println!("You cannot buy this item.");
                                         pause2();
-                                        base(&mut player)}
-                                    else{
+                                        base(&mut player)
+                                    } else {
                                         player.inventory.push(Item::Deserteagle);
                                         println!("You have successfully bought a Desert eagle.");
                                         player.money = player.money - 200;
                                         pause2();
-                                        base(&mut player)}
+                                        base(&mut player)
                                     }
-                                2 => {
-                                if player.money < 250{
-                                    println!("You cannot buy this item.");
-                                    pause2();
-                                    base(&mut player);}
-                                else{
-                                    player.inventory.push(Item::MauserC96);
-                                    println!("You have successfully bought a Desert eagle.");
-                                    player.money = player.money - 250;
-                                    pause2();
-                                    base(&mut player)
                                 }
+                                2 => {
+                                    if player.money < 250 {
+                                        println!("You cannot buy this item.");
+                                        pause2();
+                                        base(&mut player);
+                                    } else {
+                                        player.inventory.push(Item::MauserC96);
+                                        println!("You have successfully bought a Desert eagle.");
+                                        player.money = player.money - 250;
+                                        pause2();
+                                        base(&mut player)
+                                    }
                                 }
                                 _ => unreachable!(),
                             }
@@ -302,78 +303,76 @@ fn base(mut player: &mut Player) {
                                     if player.money < 150 {
                                         println!("You cannot buy this item.");
                                         pause2();
-                                        base(&mut player);}
-                                    else {
+                                        base(&mut player);
+                                    } else {
                                         player.inventory.push(Item::Coltanaconda);
                                         println!("You have successfully bought a Colt Anaconda.");
                                         player.money = player.money - 150;
                                         pause2();
                                         base(&mut player);
                                     }
-                                    }
+                                }
                                 3 => {
                                     if player.money < 200 {
                                         println!("You cannot buy this item.");
                                         pause2();
-                                        base(&mut player);}
-                                    else {
+                                        base(&mut player);
+                                    } else {
                                         player.inventory.push(Item::MatebaAutorevolver);
-                                        println!("You have successfully boughT a Mateba Auto Revolver.");
+                                        println!(
+                                            "You have successfully boughT a Mateba Auto Revolver."
+                                        );
                                         player.money = player.money - 200;
                                         pause2();
                                         base(&mut player);
                                     }
-                                    } _ => unreachable!(),
-                                }
                                 }
                                 _ => unreachable!(),
                             }
                         }
-                        3 => {
-                            println!("{}", player.money);
-                            println!("1) Ak-47");
-                            println!("2) Vektor CR21");
+                        _ => unreachable!(),
+                    }
+                }
+                3 => {
+                    println!("{}", player.money);
+                    println!("1) Ak-47");
+                    println!("2) Vektor CR21");
 
-                            match valid_input(|x| *x > 3 && *x < 0) {
-                                1 => {
-                                     if player.money < 255 {
-                                        println!("You cannot buy this item.");
-                                        pause2();
-                                        base(&mut player);}
-                                    else {
-                                        player.inventory.push(Item::Ak47);
-                                        println!("You have successfully bought an AK-47.");
-                                        player.money = player.money - 255;
-                                        pause2();
-                                        base(&mut player);
-                                }}
-                            
-                        
-                            2 => {
-                                 if player.money < 200 {
-                                        println!("You cannot buy this item.");
-                                        pause2();
-                                        base(&mut player);}
-                                    else {
-                                        player.inventory.push(Item::VektorCR21);
-                                        println!("You have successfully bought a Vektor CR21.");
-                                        player.money = player.money - 200;
-                                        pause2();
-                                        base(&mut player);}
+                    match valid_input(|x| *x > 3 && *x < 0) {
+                        1 => {
+                            if player.money < 255 {
+                                println!("You cannot buy this item.");
+                                pause2();
+                                base(&mut player);
+                            } else {
+                                player.inventory.push(Item::Ak47);
+                                println!("You have successfully bought an AK-47.");
+                                player.money = player.money - 255;
+                                pause2();
+                                base(&mut player);
                             }
+                        }
+
+                        2 => {
+                            if player.money < 200 {
+                                println!("You cannot buy this item.");
+                                pause2();
+                                base(&mut player);
+                            } else {
+                                player.inventory.push(Item::VektorCR21);
+                                println!("You have successfully bought a Vektor CR21.");
+                                player.money = player.money - 200;
+                                pause2();
+                                base(&mut player);
+                            }
+                        }
                         _ => unreachable!(),
                     }
                 }
                 _ => unreachable!(),
             }
         }
-        3 => {println!("3) Inventory")},
+        3 => println!("3) Inventory"),
         _ => unreachable!(),
     }
 }
-                }
-            }
-        }
-    }
-}
-            
