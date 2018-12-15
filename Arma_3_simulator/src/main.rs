@@ -23,6 +23,7 @@ enum Item {
     Jeep,
 }
 
+
 fn main() {
     println!("You are in command of a squad of 5 and you have to make sure they live.");
     pause();
@@ -180,7 +181,9 @@ fn dead() {
 }
 
 fn pause() {
-    thread::sleep(time::Duration::from_secs(2));
+    use thread;
+    use time;
+    sleep(Duration::from_secs(2));
 }
 
 fn pause2() {
