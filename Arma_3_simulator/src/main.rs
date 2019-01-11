@@ -376,6 +376,11 @@ fn base(mut player: &mut Player) {
             }
         }
         3 => println!("3) Inventory"),
+        
+        4 => {println!("Game owned by Elemental Industries ©2015");
+        println!("Game made by J.M.Armstrong  ©2018");
+        }
+        
         _ => unreachable!(),
     }
 }
