@@ -3,6 +3,8 @@ extern crate read_input;
 use read_input::*;
 use std::io;
 use std::io::prelude::*;
+use std::thread::sleep;
+use std::time::Duration;
 use std::{thread, time};
 
 struct Player {
@@ -19,12 +21,13 @@ enum Item {
     MatebaAutorevolver,
     VektorCR21,
     MauserC96,
+    Fist,
     Truck,
     Jeep,
 }
 
-
 fn main() {
+    player.inventory.push(Item::Fist);
     println!("You are in command of a squad of 5 and you have to make sure they live.");
     pause();
     println!("What is your surname?");
@@ -156,7 +159,7 @@ fn main() {
 }
 
 fn pass(mut player: &mut Player) {
-    player.money = 100;
+    player.money = 999999999999;
     println!("1) The begining");
     println!("2) Base");
     match valid_input(|x| *x < 3 && *x > 0) {
@@ -168,7 +171,9 @@ fn pass(mut player: &mut Player) {
 
 fn shop() {}
 
-fn mission1(mut player: &mut Player) {}
+fn mission1(mut player: &mut Player) {
+    println("Crossroads: As your second mission we are going to send you to capture the base you have reconed")
+}
 
 fn dead() {
     println!("Do you want to play again?");
@@ -181,8 +186,6 @@ fn dead() {
 }
 
 fn pause() {
-    use thread;
-    use time;
     sleep(Duration::from_secs(2));
 }
 
@@ -323,7 +326,7 @@ fn base(mut player: &mut Player) {
                                     } else {
                                         player.inventory.push(Item::MatebaAutorevolver);
                                         println!(
-                                            "You have successfully boughT a Mateba Auto Revolver."
+                                            "You have successfully bought a Mateba Auto Revolver."
                                         );
                                         player.money = player.money - 200;
                                         pause2();
@@ -375,12 +378,15 @@ fn base(mut player: &mut Player) {
                 _ => unreachable!(),
             }
         }
-        3 => println!("3) Inventory"),
-        
-        4 => {println!("Game owned by Elemental Industries ©2015");
-        println!("Game made by J.M.Armstrong  ©2018");
+        3 => {
+            println!("Money: {}", player.money);
         }
-        
+
+        4 => {
+            println!("Game owned by Elemental Industries ©2015");
+            println!("Game made by J.M.Armstrong  ©2018");
+        }
+
         _ => unreachable!(),
     }
 }

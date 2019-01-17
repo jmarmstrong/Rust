@@ -2,36 +2,45 @@
 name = "arma_3_simulator"
 version = "0.1.0"
 dependencies = [
- "dont_disappear 2.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "read_input 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "dont_disappear 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "read_input 0.5.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "crossterm"
-version = "0.4.3"
+version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.44 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_winapi 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.47 (registry+https://github.com/rust-lang/crates.io-index)",
  "termios 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "dont_disappear"
-version = "2.2.0"
+name = "crossterm_winapi"
+version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "crossterm 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "dont_disappear"
+version = "2.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "crossterm 0.5.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.44"
+version = "0.2.47"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "read_input"
-version = "0.5.2"
+version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -39,7 +48,7 @@ name = "termios"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.44 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.47 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -62,10 +71,11 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
-"checksum crossterm 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)" = "c9d2256dbdfabccaf577d59b1a4058bd4a7cd28823e8bc31a74a5781df12d30e"
-"checksum dont_disappear 2.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "0ea601ad607393d6878cb9ede7a70fa2ce71882066e7d977eb8f395fbf0c7fbc"
-"checksum libc 0.2.44 (registry+https://github.com/rust-lang/crates.io-index)" = "10923947f84a519a45c8fefb7dd1b3e8c08747993381adee176d7a82b4195311"
-"checksum read_input 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "1a20f680d5f6e12cc4979a7ec8fc1e08bbbbac002a88637788a06b85628b0ba4"
+"checksum crossterm 0.5.4 (registry+https://github.com/rust-lang/crates.io-index)" = "5902ceec4dda147d8c7d0eebf979fdf3b0b56dff51676f6dc4cc5df01dbea113"
+"checksum crossterm_winapi 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "8b1bc85eec28aa07ce82ff8adab106a9d92f877667f7cf76518ba43da47a205d"
+"checksum dont_disappear 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "c9db2e5991c858623d2277929b41d07a6bf215ddfa92f99bb0cbd8c5cd5c0fa6"
+"checksum libc 0.2.47 (registry+https://github.com/rust-lang/crates.io-index)" = "48450664a984b25d5b479554c29cc04e3150c97aa4c01da5604a2d4ed9151476"
+"checksum read_input 0.5.4 (registry+https://github.com/rust-lang/crates.io-index)" = "40cd993ae13e1a0780731e0d1c42b41d76df42903fe6e51eb6b9f97f94e283dd"
 "checksum termios 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "72b620c5ea021d75a735c943269bb07d30c9b77d6ac6b236bc8b5c496ef05625"
 "checksum winapi 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)" = "92c1eb33641e276cfa214a0522acad57be5c56b10cb348b3c5117db75f3ac4b0"
 "checksum winapi-i686-pc-windows-gnu 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
