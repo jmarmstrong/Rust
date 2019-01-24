@@ -219,7 +219,7 @@ fn base(mut player: &mut Player) {
                     println!("1) Yes");
                     println!("2) No");
                     match valid_input(|x| *x < 3 && *x > 0) {
-                        1 => Mission1(&mut player),
+                        1 => mission1(&mut player),
 
                         2 => {
                             println!("I will send you back to the base");
