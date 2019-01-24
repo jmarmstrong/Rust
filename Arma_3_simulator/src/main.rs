@@ -21,13 +21,11 @@ enum Item {
     MatebaAutorevolver,
     VektorCR21,
     MauserC96,
-    Fist,
     Truck,
     Jeep,
 }
 
 fn main() {
-    player.inventory.push(Item::Fist);
     println!("You are in command of a squad of 5 and you have to make sure they live.");
     pause();
     println!("What is your surname?");
@@ -172,7 +170,10 @@ fn pass(mut player: &mut Player) {
 fn shop() {}
 
 fn mission1(mut player: &mut Player) {
-    println("Crossroads: As your second mission we are going to send you to capture the base you have reconed")
+    pause();
+    println!("Crossroads: As your second mission we are going to send you to capture the base you have reconed.");
+    pause();
+    println!("Crossroads: What weapons do you want to bring?");
 }
 
 fn dead() {
@@ -194,9 +195,7 @@ fn pause2() {
 }
 
 fn base(mut player: &mut Player) {
-    println!("Crossroads: Welcome {} to the base", player.name);
-    pause();
-    println!("Crossroads: Here you can either Start the next mission, goto the shop and look at your inventory. I will leave you to it");
+    println!("Crossroads: Welcome Commander {} to the base", player.name);
     pause();
     println!("1) Missions");
     println!("2) Shop");
@@ -219,6 +218,22 @@ fn base(mut player: &mut Player) {
                     println!("Are you ready to start the mission?");
                     println!("1) Yes");
                     println!("2) No");
+                    match valid_input(|x| *x < 3 && *x > 0) {
+                        1 => Mission1(&mut player),
+
+                        2 => {
+                            println!("I will send you back to the base");
+                            println!("In 3");
+                            pause();
+                            println!("2");
+                            pause();
+                            println!("1");
+                            pause();
+                            println!("Now");
+                            base(&mut player);
+                        }
+                        _ => unreachable!(),
+                    }
                 }
                 _ => unreachable!(),
             }
